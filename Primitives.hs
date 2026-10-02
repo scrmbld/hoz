@@ -364,7 +364,7 @@ prim_recordAccess = interpOp "RecordAccess" [Strict, Strict, Output] $ \[(ra, r)
   return $ let 
     lookupField feat fs = case lookup feat fs of
          Just loc -> case slookup loc (sas s) of
-               Just (_, val) -> Right (s, [val])
+               Just (_, val) -> Right (s, [SVarRef loc])
                Nothing -> Left "Impossible: Record field location missing"
          Nothing -> Left $ "Missing Feature '" ++ show feat ++ "' in record"
   in case r of
